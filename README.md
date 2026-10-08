@@ -36,6 +36,11 @@ lake --wfail build
 ```
 
 The file prints the axioms of both principal theorems during compilation.
+Both have only `propext`, `Classical.choice`, and `Quot.sound` as dependencies.
+The proof contains no placeholders, custom axioms, or native evaluation.
+
+An independent statement and proof audit confirmed the exact target, the
+rhombus construction, and the finite-support justification for `ncard`.
 
 ## License
 

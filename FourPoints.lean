@@ -25,7 +25,7 @@ import Mathlib.Tactic.Tauto
 
 
 open Finset
-open scoped EuclideanGeometry
+
 
 namespace Erdos132Proof
 
@@ -130,15 +130,17 @@ theorem exists_four_points_one_rare_distance :
               simp only [Prod.mk.injEq] at h; exact Prod.ext (rh_inj h.1) (rh_inj h.2)⟩ := by
         ext ⟨x, y⟩
         simp only [mem_filter, mem_product, mem_map, mem_univ, true_and,
-          Function.Embedding.coeFn_mk, Prod.mk.injEq, Prod.exists]
+          Function.Embedding.coeFn_mk, Prod.exists]
         constructor
         · rintro ⟨⟨⟨a, rfl⟩, ⟨b, rfl⟩⟩, hne, hd⟩
-          refine ⟨a, b, ⟨fun h => hne (h ▸ rfl), ?_⟩, rfl, rfl⟩
+          refine ⟨a, b, ⟨fun h => hne (h ▸ rfl), ?_⟩, rfl⟩
           intro hc
           have hab : a ≠ b := fun h => hne (h ▸ rfl)
           rw [rh_dist, if_neg hab, if_pos hc] at hd
           exact sqrt3_ne_one hd
-        · rintro ⟨a, b, ⟨hab, hc⟩, rfl, rfl⟩
+        · rintro ⟨a, b, ⟨hab, hc⟩, hpair⟩
+          simp only [Prod.mk.injEq] at hpair
+          rcases hpair with ⟨rfl, rfl⟩
           refine ⟨⟨⟨a, rfl⟩, ⟨b, rfl⟩⟩, fun h => hab (rh_inj h), ?_⟩
           rw [rh_dist, if_neg hab, if_neg hc]
       simp only [distMult, this, card_map] at hm
