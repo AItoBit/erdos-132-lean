@@ -139,8 +139,7 @@ theorem exists_four_points_one_rare_distance :
           rw [rh_dist, if_neg hab, if_pos hc] at hd
           exact sqrt3_ne_one hd
         · rintro ⟨a, b, ⟨hab, hc⟩, hpair⟩
-          simp only [Prod.mk.injEq] at hpair
-          rcases hpair with ⟨rfl, rfl⟩
+          cases hpair
           refine ⟨⟨⟨a, rfl⟩, ⟨b, rfl⟩⟩, fun h => hab (rh_inj h), ?_⟩
           rw [rh_dist, if_neg hab, if_neg hc]
       simp only [distMult, this, card_map] at hm
